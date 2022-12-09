@@ -378,7 +378,8 @@ QQmlApplicationEngine* QGCCorePlugin::createQmlApplicationEngine(QObject* parent
 
 void QGCCorePlugin::createRootWindow(QQmlApplicationEngine* qmlEngine)
 {
-    qmlEngine->load(QUrl(QStringLiteral("qrc:/qml/MainRootWindow.qml")));
+    //qmlEngine->load(QUrl(QStringLiteral("qrc:/qml/MainRootWindow.qml")));
+    qmlEngine->load(QUrl(QStringLiteral("qrc:/qml/AuthWindow.qml")));
 }
 
 bool QGCCorePlugin::mavlinkMessage(Vehicle* vehicle, LinkInterface* link, mavlink_message_t message)

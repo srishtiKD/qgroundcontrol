@@ -611,10 +611,12 @@ void
 VideoManager::_initVideo()
 {
 #if defined(QGC_GST_STREAMING)
-    QQuickWindow* root = qgcApp()->mainRootWindow();
+    //QQuickWindow* root = qgcApp()->mainRootWindow();
+    QQuickWindow* root = qgcApp()->authWindow();
 
     if (root == nullptr) {
-        qCDebug(VideoManagerLog) << "mainRootWindow() failed. No root window";
+        //qCDebug(VideoManagerLog) << "mainRootWindow() failed. No root window";
+        qCDebug(VideoManagerLog) << "authWindow() failed. No root window";
         return;
     }
 

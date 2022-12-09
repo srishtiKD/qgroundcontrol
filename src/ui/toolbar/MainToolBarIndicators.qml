@@ -18,7 +18,7 @@ Row {
     id:                 indicatorRow
     anchors.top:        parent.top
     anchors.bottom:     parent.bottom
-    anchors.margins:    _toolIndicatorMargins
+    anchors.margins:   _toolIndicatorMargins
     spacing:            ScreenTools.defaultFontPixelWidth * 1.5
 
     property var  _activeVehicle:           QGroundControl.multiVehicleManager.activeVehicle

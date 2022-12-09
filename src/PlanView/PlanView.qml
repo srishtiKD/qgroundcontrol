@@ -88,6 +88,7 @@ Item {
     MapFitFunctions {
         id:                         mapFitFunctions  // The name for this id cannot be changed without breaking references outside of this code. Beware!
         map:                        editorMap
+
         usePlannedHomePosition:     true
         planMasterController:       _planMasterController
     }
@@ -362,7 +363,7 @@ Item {
             mapName:                    "MissionEditor"
             allowGCSLocationCenter:     true
             allowVehicleLocationCenter: true
-            planView:                   true
+            planView:                   false //old-> true
 
             zoomLevel:                  QGroundControl.flightMapZoom
             center:                     QGroundControl.flightMapPosition
@@ -559,6 +560,7 @@ Item {
             z:                  QGroundControl.zOrderWidgets
             maxHeight:          parent.height - toolStrip.y
             title:              qsTr("Plan")
+            color: "black"          // new
 
             readonly property int flyButtonIndex:       0
             readonly property int fileButtonIndex:      1

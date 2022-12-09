@@ -1,6 +1,8 @@
 add_subdirectory(preferences)
 add_subdirectory(toolbar)
 
+RESOURCES = qgroundcontrol.qrc
+
 add_library(ui
 	QGCPluginHost.cc
 	QGCPluginHost.h
@@ -15,6 +17,13 @@ add_custom_target(uiQml
 		AppSettings.qml
 		ExitWithErrorWindow.qml
 		MainRootWindow.qml
+                AuthWindow.qml
+                AuthTest.qml
+                LoginPage.qml
+                SignupPage.qml
+                CButton.qml
+                PasswordResetPage.qml
+
 )
 
 target_link_libraries(ui

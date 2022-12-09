@@ -38,7 +38,7 @@ Item {
 
     PlanMasterController {
         id:                     _planController
-        flyView:                true
+        flyView:                true        //old-> true
         Component.onCompleted:  start()
     }
 

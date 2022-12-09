@@ -1,6 +1,7 @@
 
 add_custom_target(FligthDisplayQml
 	SOURCES
+            DataView.qml
 		DefaultChecklist.qml
 		FixedWingChecklist.qml
 		FlightDisplayViewDummy.qml
@@ -49,5 +50,7 @@ add_custom_target(FligthDisplayQml
 		ObstacleDistanceOverlay.qml
 		ObstacleDistanceOverlayMap.qml
 		ObstacleDistanceOverlayVideo.qml
+                TeleDataView.qml
+                FlyViewToolbar.qml
 )
 

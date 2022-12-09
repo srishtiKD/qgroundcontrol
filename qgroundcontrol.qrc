@@ -27,6 +27,13 @@
         <file alias="SubChecklist.qml">src/FlightDisplay/SubChecklist.qml</file>
     </qresource>
     <qresource prefix="/qml">
+        <file alias="BackendTest.js">src/ui/BackendTest.js</file>
+        <file alias="AuthWindow.qml">src/ui/AuthWindow.qml</file>
+        <file alias="AuthTest.qml">src/ui/AuthTest.qml</file>
+        <file alias="LoginPage.qml">src/ui/LoginPage.qml</file>
+        <file alias="SignupPage.qml">src/ui/SignupPage.qml</file>
+        <file alias="CButton.qml">src/ui/CButton.qml</file>
+        <file alias="PasswordResetPage.qml">src/ui/PasswordResetPage.qml</file>
         <file alias="QGroundControl/Controls/HeightIndicator.qml">src/QmlControls/HeightIndicator.qml</file>
         <file alias="QGroundControl/Controls/QGCDynamicObjectManager.qml">src/QmlControls/QGCDynamicObjectManager.qml</file>
         <file alias="QGroundControl/Controls/QGCOptionsComboBox.qml">src/QmlControls/QGCOptionsComboBox.qml</file>
@@ -110,6 +117,7 @@
         <file alias="QGroundControl/Controls/MainStatusIndicator.qml">src/ui/toolbar/MainStatusIndicator.qml</file>
         <file alias="QGroundControl/Controls/FlightModeMenuIndicator.qml">src/ui/toolbar/FlightModeMenuIndicator.qml</file>
         <file alias="QGroundControl/Controls/MainToolBar.qml">src/ui/toolbar/MainToolBar.qml</file>
+        <file alias="QGroundControl/Controls/MyToolBarMenu.qml">src/ui/toolbar/MyToolBarMenu.qml</file>
         <file alias="QGroundControl/Controls/MainWindowSavedState.qml">src/QmlControls/MainWindowSavedState.qml</file>
         <file alias="QGroundControl/Controls/MAVLinkChart.qml">src/QmlControls/MAVLinkChart.qml</file>
         <file alias="QGroundControl/Controls/MAVLinkMessageButton.qml">src/QmlControls/MAVLinkMessageButton.qml</file>
@@ -181,7 +189,7 @@
         <file alias="QGroundControl/Controls/TerrainStatus.qml">src/PlanView/TerrainStatus.qml</file>
         <file alias="QGroundControl/Controls/TakeoffItemMapVisual.qml">src/PlanView/TakeoffItemMapVisual.qml</file>
         <file alias="QGroundControl/Controls/ToolStrip.qml">src/QmlControls/ToolStrip.qml</file>
-       	<file alias="QGroundControl/Controls/ToolStripHoverButton.qml">src/QmlControls/ToolStripHoverButton.qml</file>
+        <file alias="QGroundControl/Controls/ToolStripHoverButton.qml">src/QmlControls/ToolStripHoverButton.qml</file>
         <file alias="QGroundControl/Controls/TransectStyleComplexItemEditor.qml">src/PlanView/TransectStyleComplexItemEditor.qml</file>
         <file alias="QGroundControl/Controls/TransectStyleComplexItemStats.qml">src/PlanView/TransectStyleComplexItemStats.qml</file>
         <file alias="QGroundControl/Controls/TransectStyleComplexItemTabBar.qml">src/PlanView/TransectStyleComplexItemTabBar.qml</file>
@@ -204,6 +212,7 @@
         <file alias="QGroundControl/FlightDisplay/FlightDisplayViewWidgets.qml">src/FlightDisplay/FlightDisplayViewWidgets.qml</file>
         <file alias="QGroundControl/FlightDisplay/FlyViewAirspaceIndicator.qml">src/FlightDisplay/FlyViewAirspaceIndicator.qml</file>
         <file alias="QGroundControl/FlightDisplay/FlyView.qml">src/FlightDisplay/FlyView.qml</file>
+        <file alias="QGroundControl/FlightDisplay/DataView.qml">src/FlightDisplay/DataView.qml</file>
         <file alias="QGroundControl/FlightDisplay/FlyViewCustomLayer.qml">src/FlightDisplay/FlyViewCustomLayer.qml</file>
         <file alias="QGroundControl/FlightDisplay/FlyViewInstrumentPanel.qml">src/FlightDisplay/FlyViewInstrumentPanel.qml</file>
         <file alias="QGroundControl/FlightDisplay/FlyViewMap.qml">src/FlightDisplay/FlyViewMap.qml</file>
@@ -282,6 +291,11 @@
         <file alias="VibrationPage.qml">src/AnalyzeView/VibrationPage.qml</file>
         <file alias="VirtualJoystick.qml">src/FlightDisplay/VirtualJoystick.qml</file>
         <file alias="VTOLLandingPatternEditor.qml">src/PlanView/VTOLLandingPatternEditor.qml</file>
+        <file alias="QGroundControl/Controls/MockLinkOptionsDlg.qml">src/comm/MockLinkOptionsDlg.qml</file>
+        <file alias="FlyViewToolbar.qml">src/FlightDisplay/FlyViewToolbar.qml</file>
+        <file alias="AccountToolbar.qml">src/ui/toolbar/AccountToolbar.qml</file>
+        <file alias="MissionToolbar.qml">src/ui/toolbar/MissionToolbar.qml</file>
+        <file alias="SetupToolbar.qml">src/ui/toolbar/SetupToolbar.qml</file>
     </qresource>
     <qresource prefix="/FirstRunPromptDialogs">
         <file alias="UnitsFirstRunPrompt.qml">src/FirstRunPromptDialogs/UnitsFirstRunPrompt.qml</file>
@@ -351,7 +365,8 @@
         <file alias="Parameter.MetaData.json">src/comm/MockLink.Parameter.MetaData.json</file>
         <file alias="Arduplane.params.ftp.bin">src/comm/Mocklink.Arduplane.params.ftp.bin</file>
     </qresource>
-    <qresource prefix="/qml">
-        <file alias="QGroundControl/Controls/MockLinkOptionsDlg.qml">src/comm/MockLinkOptionsDlg.qml</file>
+    <qresource prefix="/">
+        <file alias="fontawesome-webfont.ttf">src/fontawesome-webfont.ttf</file>
+        <file>src/ui/BackendTest.js</file>
     </qresource>
 </RCC>

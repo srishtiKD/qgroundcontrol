@@ -13,4 +13,5 @@ QGCLabel {
     color:      mapPal.text
     style:      Text.Outline
     styleColor: mapPal.textOutline
+
 }

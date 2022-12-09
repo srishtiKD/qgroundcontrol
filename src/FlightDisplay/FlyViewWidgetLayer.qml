@@ -22,7 +22,6 @@ import QGroundControl.Controls      1.0
 import QGroundControl.Airspace      1.0
 import QGroundControl.Airmap        1.0
 import QGroundControl.Controllers   1.0
-import QGroundControl.Controls      1.0
 import QGroundControl.FactSystem    1.0
 import QGroundControl.FlightDisplay 1.0
 import QGroundControl.FlightMap     1.0
@@ -157,10 +156,14 @@ Item {
         property bool _verticalCenter: !QGroundControl.settingsManager.flyViewSettings.alternateInstrumentPanel.rawValue
     }
 
+
     TelemetryValuesBar {
         id:                 telemetryPanel
         x:                  recalcXPosition()
-        anchors.margins:    _toolsMargin
+        anchors.margins:   _toolsMargin
+        //anchors.bottom: parent.bottom               //new
+        //anchors.topMargin: 800
+
 
         // States for custom layout support
         states: [
@@ -225,6 +228,9 @@ Item {
         }
     }
 
+
+
+
     //-- Virtual Joystick
     Loader {
         id:                         virtualJoystickMultiTouch
@@ -243,12 +249,21 @@ Item {
         property bool _virtualJoystickEnabled: QGroundControl.settingsManager.appSettings.virtualJoystick.rawValue
     }
 
+
+
+
+
+
     FlyViewToolStrip {
         id:                     toolStrip
-        anchors.leftMargin:     _toolsMargin + parentToolInsets.leftEdgeCenterInset
-        anchors.topMargin:      _toolsMargin + parentToolInsets.topEdgeLeftInset
-        anchors.left:           parent.left
-        anchors.top:            parent.top
+        anchors.leftMargin:     _toolsMargin + parentToolInsets.leftEdgeCenterInset //mainWindow.width*0.2 //
+        anchors.topMargin:      _toolsMargin + parentToolInsets.topEdgeLeftInset //100
+        anchors.left:           parent.left           //old
+        anchors.top:            parent.top            //old
+        //anchors.bottom: parent.bottom         //new
+        //anchors.right: parent.right         //new
+        //width: 100      //new
+        //height: 200         //new
         z:                      QGroundControl.zOrderWidgets
         maxHeight:              parent.height - y - parentToolInsets.bottomEdgeLeftInset - _toolsMargin
         visible:                !QGroundControl.videoManager.fullScreen
@@ -257,6 +272,11 @@ Item {
 
         property real leftInset: x + width
     }
+
+
+
+
+
 
     FlyViewAirspaceIndicator {
         anchors.top:                parent.top

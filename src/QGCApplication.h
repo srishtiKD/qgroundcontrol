@@ -93,7 +93,8 @@ public:
     QTranslator& qgcJSONTranslator(void) { return _qgcTranslatorJSON; }
 
     void            setLanguage();
-    QQuickWindow*   mainRootWindow();
+    //QQuickWindow*   mainRootWindow();
+    QQuickWindow*   authWindow();
     uint64_t        msecsSinceBoot(void) { return _msecsElapsedTime.elapsed(); }
 
     /// Registers the signal such that only the last duplicate signal added is left in the queue.
@@ -207,7 +208,8 @@ private:
     int                 _buildVersion           = 0;
     GPSRTKFactGroup*    _gpsRtkFactGroup        = nullptr;
     QGCToolbox*         _toolbox                = nullptr;
-    QQuickWindow*       _mainRootWindow         = nullptr;
+    //QQuickWindow*       _mainRootWindow         = nullptr;
+    QQuickWindow*       _authWindow         = nullptr;
     bool                _bluetoothAvailable     = false;
     QTranslator         _qgcTranslatorSourceCode;           ///< translations for source code C++/Qml
     QTranslator         _qgcTranslatorJSON;                 ///< translations for json files
