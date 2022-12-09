@@ -27,6 +27,8 @@ message(Qt version $$[QT_VERSION])
 
 include(QGCCommon.pri)
 
+
+
 TARGET   = QGroundControl
 TEMPLATE = app
 QGCROOT  = $$PWD
@@ -39,7 +41,7 @@ QML_IMPORT_PATH += $$PWD/src/QmlControls
 
 MacBuild {
     QMAKE_INFO_PLIST    = Custom-Info.plist
-    ICON                = $${SOURCE_DIR}/resources/icons/macx.icns
+    ICON                = $${SOURCE_DIR}/resources/icons/test2.icns
     OTHER_FILES        += Custom-Info.plist
     LIBS               += -framework ApplicationServices
 }
@@ -52,7 +54,7 @@ LinuxBuild {
 }
 
 WindowsBuild {
-    RC_ICONS = resources/icons/qgroundcontrol.ico
+    RC_ICONS = resources/icons/kgc.ico
     CONFIG += resources_big
 }
 
@@ -450,6 +452,7 @@ SOURCES += \
     src/api/QGCOptions.cc \
     src/api/QGCSettings.cc \
     src/api/QmlComponentInfo.cc \
+
 
 contains (DEFINES, QGC_ENABLE_PAIRING) {
     SOURCES += \
@@ -1529,8 +1532,6 @@ contains (CONFIG, QGC_DISABLE_INSTALLER_SETUP) {
     include(QGCPostLinkInstaller.pri)
 }
 
-DISTFILES += \
-    src/QmlControls/QGroundControl/Specific/qmldir
 
 #
 # Steps for "install" target on Linux
@@ -1550,3 +1551,6 @@ LinuxBuild {
 
     INSTALLS += target share_qgroundcontrol share_icons share_metainfo share_applications
 }
+
+
+

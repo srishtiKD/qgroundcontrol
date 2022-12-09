@@ -22,6 +22,10 @@ import QGroundControl.MultiVehicleManager   1.0
 import QGroundControl.Vehicle               1.0
 import QGroundControl.QGCPositionManager    1.0
 
+/////// update
+
+////////////
+
 Map {
     id: _map
 
@@ -143,3 +147,5 @@ Map {
         }
     }
 } // Map
+
+

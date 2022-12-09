@@ -53,6 +53,7 @@ Item {
     FlightDisplayViewVideo {
         id:             videoStreaming
         anchors.fill:   parent
+//        anchors.right: parent.right
         useSmallFont:   _root.pipState.state !== _root.pipState.fullState
         visible:        QGroundControl.videoManager.isGStreamer
     }

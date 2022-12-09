@@ -18,6 +18,11 @@
 #include <QtPlugin>
 #include <QStringListModel>
 
+//  NEW
+#include <QQmlEngine>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+
 #include "QGC.h"
 #include "QGCApplication.h"
 #include "AppMessages.h"
@@ -66,6 +71,13 @@
 #ifdef Q_OS_WIN
 
 #include <windows.h>
+
+//
+#include <QQmlContext>
+#include <QDebug>
+#include <QQmlContext>
+//#include "qgcauth.cpp"
+//#include "qgcauth.h"
 
 /// @brief CRT Report Hook installed using _CrtSetReportHook. We install this hook when
 /// we don't want asserts to pop a dialog on windows.
@@ -237,6 +249,10 @@ void sigHandler(int s)
 
 int main(int argc, char *argv[])
 {
+
+//NEW UPDATE
+    //int qgcauthv = qgcauth();
+
 #ifndef __mobile__
     // We make the runguard key different for custom and non custom
     // builds, so they can be executed together in the same device.
@@ -248,12 +264,13 @@ int main(int argc, char *argv[])
     RunGuard guard(runguardString);
     if (!guard.tryToRun()) {
         // QApplication is necessary to use QMessageBox
-        QApplication errorApp(argc, argv);
-        QMessageBox::critical(nullptr, QObject::tr("Error"),
-            QObject::tr("A second instance of %1 is already running. Please close the other instance and try again.").arg(QGC_APPLICATION_NAME)
-        );
-        return -1;
+               QApplication errorApp(argc, argv);
+               QMessageBox::critical(nullptr, QObject::tr("Error"),
+                   QObject::tr("A second instance of %1 is already running. Please close the other instance and try again.").arg(QGC_APPLICATION_NAME)
+               );
+               return -1;
     }
+
 #endif
 
     //-- Record boot time
@@ -276,6 +293,7 @@ int main(int argc, char *argv[])
 #endif
 #endif
 
+
 #ifdef Q_OS_WIN
     // Set our own OpenGL buglist
     qputenv("QT_OPENGL_BUGLIST", ":/opengl/resources/opengl/buglist.json");
@@ -292,6 +310,9 @@ int main(int argc, char *argv[])
         }
     }
 #endif
+
+
+
 
 #ifdef Q_OS_LINUX
     std::signal(SIGINT, sigHandler);
@@ -328,6 +349,13 @@ int main(int argc, char *argv[])
     Q_IMPORT_PLUGIN(QGeoServiceProviderFactoryQGC)
 
     bool runUnitTests = false;          // Run unit tests
+
+
+
+
+
+
+
 
 #ifdef QT_DEBUG
     // We parse a small set of command line options here prior to QGCApplication in order to handle the ones
@@ -367,11 +395,15 @@ int main(int argc, char *argv[])
 
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QGCApplication* app = new QGCApplication(argc, argv, runUnitTests);
+
     Q_CHECK_PTR(app);
     if(app->isErrorState()) {
         app->exec();
         return -1;
     }
+
+
+
 
 #ifdef Q_OS_LINUX
     QApplication::setWindowIcon(QIcon(":/res/resources/icons/qgroundcontrol.ico"));
@@ -430,3 +462,11 @@ int main(int argc, char *argv[])
 
     return exitCode;
 }
+
+
+
+
+
+
+
+

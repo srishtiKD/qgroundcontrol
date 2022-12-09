@@ -8,9 +8,13 @@
  ****************************************************************************/
 
 import QtQuick          2.12
-import QtQuick.Controls 2.4
+//import QtQuick.Window 2.2
+import QtQuick.Controls 1.4
+import QtQuick.Controls 2.3
+import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts  1.11
 import QtQuick.Dialogs  1.3
+
 
 import QGroundControl                       1.0
 import QGroundControl.Controls              1.0
@@ -22,6 +26,16 @@ import QGroundControl.Controllers           1.0
 Rectangle {
     id:     _root
     color:  qgcPal.toolbarBackground
+//    border.width : 1
+//    border.color: "white"
+
+    visible:        currentToolbar === flyViewToolbar
+    gradient: Gradient {
+        orientation: Gradient.Horizontal
+        GradientStop { position: 0;                                     color: "#444444" }    //gradient start color
+        GradientStop { position: currentButton.x + currentButton.width; color: _mainStatusBGColor }
+        GradientStop { position: 1;                                     color: _root.color }
+    }
 
     property int currentToolbar: flyViewToolbar
 
@@ -31,31 +45,32 @@ Rectangle {
 
     property var    _activeVehicle:     QGroundControl.multiVehicleManager.activeVehicle
     property bool   _communicationLost: _activeVehicle ? _activeVehicle.vehicleLinkManager.communicationLost : false
-    property color  _mainStatusBGColor: qgcPal.brandingPurple
+    property color  _mainStatusBGColor: "gray"     //qgcPal.brandingPurple
+
 
     QGCPalette { id: qgcPal }
 
     /// Bottom single pixel divider
-    Rectangle {
-        anchors.left:   parent.left
-        anchors.right:  parent.right
-        anchors.bottom: parent.bottom
-        height:         1
-        color:          "black"
-        visible:        qgcPal.globalTheme === QGCPalette.Light
-    }
+//    Rectangle {
+//        anchors.left:   parent.left
+//        anchors.right:  parent.right
+//        anchors.bottom: parent.bottom
+//        height:         1
+//        color:          "black"
+//        visible:        qgcPal.globalTheme === QGCPalette.Dark
+//    }
 
-    Rectangle {
-        anchors.fill:   viewButtonRow
-        visible:        currentToolbar === flyViewToolbar
+//    Rectangle {
+//        anchors.fill:   viewButtonRow
+//        visible:        currentToolbar === flyViewToolbars
+//        gradient: Gradient {
+//            orientation: Gradient.Horizontal
+//            GradientStop { position: 0;                                     color: "#888888" }    //gradient start color
+//            GradientStop { position: currentButton.x + currentButton.width; color: _mainStatusBGColor }
+//            GradientStop { position: 1;                                     color: _root.color }
+//        }
+//    }
 
-        gradient: Gradient {
-            orientation: Gradient.Horizontal
-            GradientStop { position: 0;                                     color: _mainStatusBGColor }
-            GradientStop { position: currentButton.x + currentButton.width; color: _mainStatusBGColor }
-            GradientStop { position: 1;                                     color: _root.color }
-        }
-    }
 
     RowLayout {
         id:                     viewButtonRow
@@ -67,14 +82,18 @@ Rectangle {
         QGCToolBarButton {
             id:                     currentButton
             Layout.preferredHeight: viewButtonRow.height
-            icon.source:            "/res/QGCLogoFull"
+            icon.source:            "/res/gear-black.svg"
             logo:                   true
-            onClicked:              mainWindow.showToolSelectDialog()
-        }
+            MouseArea {
+                                    anchors.fill: parent
+            onClicked:              setupToolbar.visible = !setupToolbar.visible //toolsMenu2.popup() //mainWindow.showToolSelectDialog()
+                       }
+            }
+
 
         MainStatusIndicator {
             Layout.preferredHeight: viewButtonRow.height
-            visible:                currentToolbar === flyViewToolbar
+            visible:                currentToolbar === missionToolbar
         }
 
         QGCButton {
@@ -83,7 +102,9 @@ Rectangle {
             onClicked:          _activeVehicle.closeVehicle()
             visible:            _activeVehicle && _communicationLost && currentToolbar === flyViewToolbar
         }
+
     }
+
 
     QGCFlickable {
         id:                     toolsFlickable
@@ -107,59 +128,26 @@ Rectangle {
         }
     }
 
-    //-------------------------------------------------------------------------
-    //-- Branding Logo
-    Image {
+
+
+    // right most account toolbar's parent button
+    Image {                       //rectangle
         anchors.right:          parent.right
         anchors.top:            parent.top
         anchors.bottom:         parent.bottom
-        anchors.margins:        ScreenTools.defaultFontPixelHeight * 0.66
-        visible:                currentToolbar !== planViewToolbar && _activeVehicle && !_communicationLost && x > (toolsFlickable.x + toolsFlickable.contentWidth + ScreenTools.defaultFontPixelWidth)
+        anchors.margins:        5
         fillMode:               Image.PreserveAspectFit
-        source:                 _outdoorPalette ? _brandImageOutdoor : _brandImageIndoor
+        source:                 "/res/burger.svg"
+        //smooth:                 bool
         mipmap:                 true
-
-        property bool   _outdoorPalette:        qgcPal.globalTheme === QGCPalette.Light
-        property bool   _corePluginBranding:    QGroundControl.corePlugin.brandImageIndoor.length != 0
-        property string _userBrandImageIndoor:  QGroundControl.settingsManager.brandImageSettings.userBrandImageIndoor.value
-        property string _userBrandImageOutdoor: QGroundControl.settingsManager.brandImageSettings.userBrandImageOutdoor.value
-        property bool   _userBrandingIndoor:    _userBrandImageIndoor.length != 0
-        property bool   _userBrandingOutdoor:   _userBrandImageOutdoor.length != 0
-        property string _brandImageIndoor:      brandImageIndoor()
-        property string _brandImageOutdoor:     brandImageOutdoor()
-
-        function brandImageIndoor() {
-            if (_userBrandingIndoor) {
-                return _userBrandImageIndoor
-            } else {
-                if (_userBrandingOutdoor) {
-                    return _userBrandingOutdoor
-                } else {
-                    if (_corePluginBranding) {
-                        return QGroundControl.corePlugin.brandImageIndoor
-                    } else {
-                        return _activeVehicle ? _activeVehicle.brandImageIndoor : ""
-                    }
-                }
-            }
-        }
-
-        function brandImageOutdoor() {
-            if (_userBrandingOutdoor) {
-                return _userBrandingOutdoor
-            } else {
-                if (_userBrandingIndoor) {
-                    return _userBrandingIndoor
-                } else {
-                    if (_corePluginBranding) {
-                        return QGroundControl.corePlugin.brandImageOutdoor
-                    } else {
-                        return _activeVehicle ? _activeVehicle.brandImageOutdoor : ""
-                    }
-                }
-            }
-        }
+        MouseArea {
+                                anchors.fill: parent
+        onClicked:              accountToolbar.visible = !accountToolbar.visible //mainWindow.showToolSelectDialog()
+                   }
     }
+
+
+
 
     // Small parameter download progress bar
     Rectangle {
